@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>aaa</title>
+</head>
+<body>
+     <table class="table table-bordered" >
+                        <thead>
+                        <tr>
+                            <td><B>품명</B></td>
+                            <td><B>규격</B></td>
+                            <td><B>단위</B></td>
+                            <td><B>수량</B></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for material in business.material_set.all %}
+                            <tr>
+                                <td>{{ material.name }}</td>
+                                <td>{{ material.standard }}</td>
+                                <td>{{ material.unit }}</td>
+                                <td>{{ material.number }}</td>
+                            </tr>
+                        {% endfor %}
+                        <tbody>
+                    </table>
+</body>
+</html>

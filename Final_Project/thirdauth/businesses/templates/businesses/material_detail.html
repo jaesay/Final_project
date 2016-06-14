@@ -1,0 +1,66 @@
+{% extends 'businesses/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div style="width:100%; height:50px; background-color:black;">
+</div>
+
+<a href="{% url 'businesses:resource' business.id %}" style="margin-left:20px;text-decoration: none;"> <-previous page</a>
+
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                {% if user and not user.is_anonymous %}
+                <h1> {{ business.business_name }} > 물품 관리 </h1>
+                <hr class="dark">
+
+
+                    <table class="table table-bordered" >
+                        <thead>
+                        <tr>
+                            <td><B>품명</B></td>
+                            <td><B>규격</B></td>
+                            <td><B>단위</B></td>
+                            <td><B>수량</B></td>
+                            <td><B>사용중</B></td>
+                            <td><B>사용하기</B></td>
+                            <td><B>반납하기</B></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for material in business.material_set.all %}
+                            <tr>
+                                <td>{{ material.name }}</td>
+                                <td>{{ material.standard }}</td>
+                                <td>{{ material.unit }}</td>
+                                <td>{{ material.number }}</td>
+                                <td>{{ material.used_number }}</td>
+                                <td>
+                                    <form action = "{% url 'businesses:material_number' business.id material.id %}" method = "post">
+                                    {% csrf_token %}
+                                        <button name="use" value="{{ material.id }}">사용</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action = "{% url 'businesses:material_return' business.id material.id %}" method = "post">
+                                    {% csrf_token %}
+                                        <button name="return" value="{{ material.id }}">반납</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tbody>
+                    </table>
+
+               {% else %}
+                  <h1>Your Favorite Source of Free Bootstrap Themes</h1>
+                  <hr>
+                  <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
+                  <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+{% endblock content %}

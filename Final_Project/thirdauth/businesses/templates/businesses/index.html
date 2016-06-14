@@ -1,0 +1,187 @@
+{% extends 'businesses/layout.html' %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Creative - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}' type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href='{% static "font-awesome/css/font-awesome.min.css" %}' type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href='{% static "css/animate.min.css" %}' type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href='{% static "css/creative.css" %}' type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        header {
+            position: relative;
+            width: 100%;
+            min-height: auto;
+            text-align: center;
+            color: #fff;
+            background-image: url('{% static "img/header.jpg" %}');
+            background-position: center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+    }
+    </style>
+
+</head>
+
+<body id="page-top">
+
+{% block content %}
+
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                {% if user and not user.is_anonymous %}
+                <h2 class="section-heading">사업명</h2>
+                <hr class="dark">
+
+                   {% for business in business_list %}
+                     <h2><a href="{% url 'businesses:menu' business.id %}">{{ business.business_name }} </a></h2>
+                   {% endfor %}
+
+                {% else %}
+                  <h1>Sexy Dashboard</h1>
+                  <hr>
+                  <p>SW Capstone Design Team 6: 김재성 and 김윤성</p>
+                  <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Introduction</h2>
+                    <hr class="light">
+                    <p class="text-faded">프로젝트 사업 관리를 위한 Dashboard로써 하위 조직 및 사업이 복잡한 사업을 간단한 작업으로 종합적으로 관리하여 사업의 성공적인 계획 수립 및 달성을 돕는 도구이다.<br><br>-특정 사업에 대해서 사용자가 원하는 구성으로 사업을 구성하고 사업의 진행 과정을 웹기반으로 실시간으로 관리할 수 있어 업무 생산성 향상 및 비용 절감의 효과를 얻을 수 있다.<br><br>-개인부터 소그룹 조직, 회사 단위까지 누구나 사업을 조직하고 관리할 수 있도록 하는 서비스를 목표로 한다. 웹 브라우저와 구글 계정을 통해 쉽게 사용할 수 있는 서비스로 사용자의 사용성과 접근성을 높인다.</p>
+                    <a href="#" class="btn btn-default btn-xl">Get Started!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Technology</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box">
+                        <img src='{% static "img/portfolio/d.jpg" %}' class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Django
+                                </div>
+                                <div class="project-name">
+                                    -템플릿 활용으로 개발속도 향상<br>
+                                    -웹 컨텐츠의 자동화 관리<br>
+                                    -풍부한 개발환경
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box">
+                        <img src='{% static "img/portfolio/p.jpg" %}' class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Python
+                                </div>
+                                <div class="project-name">
+                                    -쉽고 간결함, 문법의 일관성<br>
+                                    -빠르게 개발할 수 있는 생산성
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box">
+                        <img src='{% static "img/portfolio/g.jpg" %}' class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Google App Engine
+                                </div>
+                                <div class="project-name">
+                                    -Pass로 서버감 인프라 구축 비용절감<br>
+                                    -구글앱스와 연동하여 강력한 도구 제공
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Do you need a help?</h2>
+                    <hr class="primary">
+                    <p>홈페이지 사용시 어려운 점이 있으시면 연락주세요.</p>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x wow bounceIn"></i>
+                    <p>010-4783-3183</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+                    <p><a href="mailto:jaesay@ajou.ac.kr">jaesay@ajou.ac.kr</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}
+
+
+
+</body>
+
+</html>
